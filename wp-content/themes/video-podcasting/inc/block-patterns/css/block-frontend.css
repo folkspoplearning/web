@@ -1,0 +1,93 @@
+/*banner-section*/
+.banner-section h4, .banner-section p, .banner-section .block-editor-rich-text__editable.wp-block-button__link, .products-outer-box p, .products-outer-box .wc-block-grid__product-title, .about-section h2{ 
+    font-family: 'Josefin Sans', sans-serif;
+}
+.banner-section {
+    width: auto;
+    height: auto;
+}
+.banner-section img.wp-image-1402,.banner-section img.wp-image-1404,.banner-section img.wp-image-1405{
+    width: auto;
+}
+.banner-section h1{
+    font-size: 58px !important;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+.banner-section .banner-section1 .wp-block-image figcaption {
+    color: #555 !important;
+    font-style: normal !important;
+}
+/*about section*/
+.about-section .about-section2{
+    align-self: center !important;
+}
+.about-section{
+    padding-top: 45px;
+}
+.about-section .about-section2 h3{
+    color: #C2C2C2;
+    font-size: 16px;
+    font-weight: 500;
+}
+.about-section .about-section2 h2{
+    color: #222;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.about-section .about-section2 a{
+    display: inline-block;
+    color: #fff;
+    background-color: #ffbf00;
+    padding: 10px 20px;
+    border-radius: 6px !important;
+    line-height: 1;
+}
+.about-section .about-section2 a:hover{
+    background:#222 !important;
+}
+ @media screen and (min-width: 320px) and (max-width: 575px){
+    .banner-section h1{
+        font-size: 23px !important;
+        margin-bottom: 0;
+        font-weight: 700;
+    }
+    .banner-section audio{
+       min-width: 220px;
+    }
+    .about-section .about-section2 .wp-block-image figcaption {
+        color: #555 !important;
+    }
+    .about-section {
+        padding-top: 0px;
+    }
+    .banner-section img.wp-image-1402,.banner-section img.wp-image-1404,.banner-section img.wp-image-1405{
+        width: 95%;;
+    }
+    .banner-section .banner-section1 .wp-block-image figcaption {
+       text-align: center;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 768px){
+    .banner-section h1 {
+        font-size: 35px !important;
+        margin-bottom: 0;
+        font-weight: 700;
+    }   
+    .banner-section img{
+       height:48% !important;
+    }  
+    .banner-section .image-section{
+      flex-wrap: nowrap;
+    } 
+    .banner-section .image-section .banner-section-img2{
+      margin-left: -12px;
+    }
+    .banner-section{
+      min-height: 0px !important;
+    }
+    .about-section {
+        padding-top:0px;
+    }
+}
