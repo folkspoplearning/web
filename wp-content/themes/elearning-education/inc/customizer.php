@@ -13,6 +13,9 @@
  */
 function elearning_education_customize_register( $wp_customize ) {
 
+	// Register the custom control type.
+	$wp_customize->register_control_type( 'Elearning_Education_Toggle_Control' );
+
 	//add home page setting pannel
 	$wp_customize->add_panel( 'elearning_education_panel_id', array(
 	    'priority' => 10,
@@ -82,15 +85,17 @@ function elearning_education_customize_register( $wp_customize ) {
         ),
 	) );
 
-	$wp_customize->add_setting('elearning_education_sticky',array(
-		'default' => false,
-		'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-	));
-	$wp_customize->add_control('elearning_education_sticky',array(
-		'type' => 'checkbox',
-		'label' => __('Show / Hide Sticky Header','elearning-education'),
-		'section' => 'elearning_education_tp_general_settings',
-	));
+	$wp_customize->add_setting( 'elearning_education_sticky', array(
+		'default'           => false,
+		'transport'         => 'refresh',
+		'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_sticky', array(
+		'label'       => esc_html__( 'Show / Hide Sticky Header', 'elearning-education' ),
+		'section'     => 'elearning_education_tp_general_settings',
+		'type'        => 'toggle',
+		'settings'    => 'elearning_education_sticky',
+	) ) );
 
 	//TP Blog Option
 	$wp_customize->add_section('elearning_education_blog_option',array(
@@ -99,71 +104,81 @@ function elearning_education_customize_register( $wp_customize ) {
      	'panel' => 'elearning_education_panel_id'
    ) );
 
-    $wp_customize->add_setting('elearning_education_remove_date',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_remove_date',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Date Option','elearning-education'),
-       'section' => 'elearning_education_blog_option',
-    ));
+	 $wp_customize->add_setting( 'elearning_education_remove_date', array(
+ 		'default'           => true,
+ 		'transport'         => 'refresh',
+ 		'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+ 	) );
+ 	$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_remove_date', array(
+ 		'label'       => esc_html__( 'Show / Hide Date Option', 'elearning-education' ),
+ 		'section'     => 'elearning_education_blog_option',
+ 		'type'        => 'toggle',
+ 		'settings'    => 'elearning_education_remove_date',
+ 	) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_remove_date', array(
 		'selector' => '.entry-date',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_remove_date',
 	) );
 
-    $wp_customize->add_setting('elearning_education_remove_author',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_remove_author',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Author Option','elearning-education'),
-       'section' => 'elearning_education_blog_option',
-    ));
+		$wp_customize->add_setting( 'elearning_education_remove_author', array(
+		 'default'           => true,
+		 'transport'         => 'refresh',
+		 'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+	 ) );
+	 $wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_remove_author', array(
+		 'label'       => esc_html__( 'Show / Hide Author Option', 'elearning-education' ),
+		 'section'     => 'elearning_education_blog_option',
+		 'type'        => 'toggle',
+		 'settings'    => 'elearning_education_remove_author',
+	 ) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_remove_author', array(
 		'selector' => '.entry-author',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_remove_author',
 	) );
 
-    $wp_customize->add_setting('elearning_education_remove_comments',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_remove_comments',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Comment Option','elearning-education'),
-       'section' => 'elearning_education_blog_option',
-    ));
+		$wp_customize->add_setting( 'elearning_education_remove_comments', array(
+		 'default'           => true,
+		 'transport'         => 'refresh',
+		 'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+		 ) );
+	 $wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_remove_comments', array(
+		 'label'       => esc_html__( 'Show / Hide Comment Option', 'elearning-education' ),
+		 'section'     => 'elearning_education_blog_option',
+		 'type'        => 'toggle',
+		 'settings'    => 'elearning_education_remove_comments',
+	 ) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_remove_comments', array(
 		'selector' => '.entry-comments',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_remove_comments',
 	) );
 
-    $wp_customize->add_setting('elearning_education_remove_tags',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_remove_tags',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Tags Option','elearning-education'),
-       'section' => 'elearning_education_blog_option',
-    ));
+		$wp_customize->add_setting( 'elearning_education_remove_tags', array(
+		 'default'           => true,
+		 'transport'         => 'refresh',
+		 'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+		 ) );
+	 $wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_remove_tags', array(
+		 'label'       => esc_html__( 'Show / Hide Tags Option', 'elearning-education' ),
+		 'section'     => 'elearning_education_blog_option',
+		 'type'        => 'toggle',
+		 'settings'    => 'elearning_education_remove_tags',
+	 ) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_remove_tags', array(
 		'selector' => '.box-content a[rel="tag"]',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_remove_tags',
 	) );
 
-    $wp_customize->add_setting('elearning_education_remove_read_button',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_remove_read_button',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Read More Button','elearning-education'),
-       'section' => 'elearning_education_blog_option',
-    ));
+	 $wp_customize->add_setting( 'elearning_education_remove_read_button', array(
+	   'default'           => true,
+	   'transport'         => 'refresh',
+	   'sanitize_callback' => 'elearning_education_sanitize_checkbox',
+	 ) );
+	 $wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_remove_read_button', array(
+		 'label'       => esc_html__( 'Show / Hide Read More Button', 'elearning-education' ),
+		 'section'     => 'elearning_education_blog_option',
+		 'type'        => 'toggle',
+		 'settings'    => 'elearning_education_remove_read_button',
+	 ) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_remove_read_button', array(
 		'selector' => '.readmore-btn',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_remove_read_button',
@@ -378,15 +393,16 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
 		'panel' => 'elearning_education_panel_id'
 	) );
 
-	$wp_customize->add_setting('elearning_education_slider_arrows',array(
+		$wp_customize->add_setting('elearning_education_slider_arrows',array(
        'default' => false,
        'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
     ));
-    $wp_customize->add_control('elearning_education_slider_arrows',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide slider','elearning-education'),
-       'section' => 'elearning_education_slider_section',
-    ));
+		$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_slider_arrows', array(
+			'label'       => esc_html__( 'Show / Hide Slider', 'elearning-education' ),
+			'section'     => 'elearning_education_slider_section',
+			'type'        => 'toggle',
+			'settings'    => 'elearning_education_slider_arrows',
+		) ) );
     $wp_customize->selective_refresh->add_partial( 'elearning_education_slider_arrows', array(
 		'selector' => '#slider .carousel-caption',
 		'render_callback' => 'elearning_education_customize_partial_elearning_education_slider_arrows',
@@ -424,7 +440,7 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
 	));
 	$wp_customize->selective_refresh->add_partial( 'elearning_education_online_courses_heading', array(
 		'selector' => '#online-courses h2',
-		'render_callback' => 'construction_hub_customize_partial_elearning_education_online_courses_heading',
+		'render_callback' => 'elearning_education_customize_partial_elearning_education_online_courses_heading',
 	) );
 
 	$wp_customize->add_setting('elearning_education_online_courses_sub_heading',array(
@@ -501,18 +517,19 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
 	));
 	$wp_customize->selective_refresh->add_partial( 'elearning_education_footer_text', array(
 		'selector' => '#footer p',
-		'render_callback' => 'construction_hub_customize_partial_elearning_education_footer_text',
+		'render_callback' => 'elearning_education_customize_partial_elearning_education_footer_text',
 	) );
 
 	$wp_customize->add_setting('elearning_education_return_to_header',array(
-		'default' => true,
-		'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
+		 'default' => true,
+		 'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
 	));
-	$wp_customize->add_control('elearning_education_return_to_header',array(
-		'type' => 'checkbox',
-		'label' => __('Show / Hide Return to header','elearning-education'),
-		'section' => 'elearning_education_footer_section',
-	));
+	$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_return_to_header', array(
+		'label'       => esc_html__( 'Show / Hide Return To Header', 'elearning-education' ),
+		'section'     => 'elearning_education_footer_section',
+		'type'        => 'toggle',
+		'settings'    => 'elearning_education_return_to_header',
+	) ) );
 
    // Add Settings and Controls for Scroll top
 	$wp_customize->add_setting('elearning_education_scroll_top_position',array(
@@ -553,6 +570,17 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
        'section' => 'title_tagline',
     ));
 
+		$wp_customize->add_setting('elearning_education_site_title_text',array(
+			 'default' => true,
+			 'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
+		));
+		$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_site_title_text', array(
+			'label'       => esc_html__( 'Show / Hide Site Title', 'elearning-education' ),
+			'section'     => 'title_tagline',
+			'type'        => 'toggle',
+			'settings'    => 'elearning_education_site_title_text',
+		) ) );
+
 		// logo site title size
 		$wp_customize->add_setting('elearning_education_site_title_font_size',array(
 			'default'	=> 30,
@@ -570,15 +598,16 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
 			),
 		));
 
-    $wp_customize->add_setting('elearning_education_site_tagline_text',array(
-       'default' => false,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_site_tagline_text',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Tagline','elearning-education'),
-       'section' => 'title_tagline',
-    ));
+		$wp_customize->add_setting('elearning_education_site_tagline_text',array(
+			 'default' => false,
+			 'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
+		));
+		$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_site_tagline_text', array(
+			'label'       => esc_html__( 'Show / Hide Site Tagline', 'elearning-education' ),
+			'section'     => 'title_tagline',
+			'type'        => 'toggle',
+			'settings'    => 'elearning_education_site_tagline_text',
+		) ) );
 
 
 		// logo site tagline size
@@ -643,25 +672,27 @@ $wp_customize->add_control('elearning_education_social_icon_fontsize',array(
 		'type'=> 'number'
 	));
 
-    $wp_customize->add_setting('elearning_education_product_sidebar',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_product_sidebar',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Shop page sidebar','elearning-education'),
-       'section' => 'woocommerce_product_catalog',
-    ));
+		$wp_customize->add_setting('elearning_education_product_sidebar',array(
+			 'default' => true,
+			 'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
+		));
+		$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_product_sidebar', array(
+			'label'       => esc_html__( 'Show / Hide Shop Page Sidebar', 'elearning-education' ),
+			'section'     => 'woocommerce_product_catalog',
+			'type'        => 'toggle',
+			'settings'    => 'elearning_education_product_sidebar',
+		) ) );
 
-    $wp_customize->add_setting('elearning_education_single_product_sidebar',array(
-       'default' => true,
-       'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
-    ));
-    $wp_customize->add_control('elearning_education_single_product_sidebar',array(
-       'type' => 'checkbox',
-       'label' => __('Show / Hide Product page sidebar','elearning-education'),
-       'section' => 'woocommerce_product_catalog',
-    ));
+		$wp_customize->add_setting('elearning_education_single_product_sidebar',array(
+			 'default' => true,
+			 'sanitize_callback'	=> 'elearning_education_sanitize_checkbox'
+		));
+		$wp_customize->add_control( new Elearning_Education_Toggle_Control( $wp_customize, 'elearning_education_single_product_sidebar', array(
+			'label'       => esc_html__( 'Show / Hide Product Page Sidebar', 'elearning-education' ),
+			'section'     => 'woocommerce_product_catalog',
+			'type'        => 'toggle',
+			'settings'    => 'elearning_education_single_product_sidebar',
+		) ) );
 }
 add_action( 'customize_register', 'elearning_education_customize_register' );
 

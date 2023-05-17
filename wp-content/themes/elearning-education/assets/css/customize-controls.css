@@ -1,8 +1,11 @@
 /* ---------Customizer--------- */
 .control-section-elearning-education h3.accordion-section-title {
-	background: #59d3b1 !important;
-	color: #fff !important;
-    padding: 20px 10px;
+	 color: #59d3b1 !important;
+	 padding: 15px;
+	 border: 2px solid #59d3b1 !important;
+	 border-left: none !important;
+	 border-right: none !important;
+	 line-height: 2;
 }
 a.button.button-secondary.alignright {
     color: #fff;
@@ -11,6 +14,25 @@ a.button.button-secondary.alignright {
     padding: 0 10px;
     background: transparent;
     height: 31px;
-    background: #192640;
+    background: #151515;
     border: none;
+}
+
+span.customize-control-title, .customize-control-title {
+    background: #bbb;
+		letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 5px;
+		color: #fff;
+		margin-bottom: 12px;
+		text-transform: uppercase;
+}
+
+/* span.customize-control-title */
+.customize-control-toggle .toggle--wrapper span.customize-control-title{
+	background: none;
+	color: #50575e;
+	padding: 0px;
+	text-transform: none;
 }

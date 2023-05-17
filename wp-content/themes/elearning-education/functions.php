@@ -339,6 +339,11 @@ require get_parent_theme_file_path( '/inc/about-theme.php' );
 require get_parent_theme_file_path('/inc/wptt-webfont-loader.php' );
 
 /**
+ * Load Custom Toggle
+ */
+require get_parent_theme_file_path( '/inc/customize-control-toggle.php' );
+
+/**
  * Logo Custamization.
  */
 

@@ -2,7 +2,7 @@
 
 Contributors: ThemesPride
 Requires at least: 5.0
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 7.2
 Author URI: https://www.themespride.com/
 Theme URI: https://www.themespride.com/themes/free-courses-wordpress-theme/
@@ -61,6 +61,11 @@ Source: http://fontawesome.io/
 = 1.7 =
 	. Added font-size settings.
 	. Resolve minor bugs.
+
+= 1.8 =
+	- Added customizer toggle button.
+	- Updated customizer CSS.
+	- Updated PHP version.
 
 == Screenshots ==
 
